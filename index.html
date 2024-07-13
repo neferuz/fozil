@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Юрист</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="menu">
+          <button class="feruz menu-item">
+            <img src="./img/plus.svg" alt="Icon" />
+            <span>Новый чат</span>
+          </button>
+          <button class="menu-item">
+            <img src="./img/IconSet.svg" alt="Icon" />
+            <span>История</span>
+          </button>
+        </div>
+        <div class="menu-footer">
+          <button class="menu-item">
+            <img src="./img/musor.svg" alt="Icon" />
+            <span>Очистить историю</span>
+          </button>
+          <button class="menu-item">
+            <img src="./img/sun.svg" alt="Icon" />
+            <span>Темная тема</span>
+          </button>
+          <button class="menu-item">
+            <img src="./img/faq.svg" alt="Icon" />
+            <span>FAQ</span>
+          </button>
+          <button class="menu-item">
+            <img src="./img/faq.svg" alt="Icon" />
+            <span>О нас</span>
+          </button>
+        </div>
+      </div>
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="header-left">
+            <img id="sidebarToggle" src="./img/darhboard_alt.svg" alt="" />
+            <span class="beta">AI URIST Beta</span>
+           
+          </div>
+          <div class="header-right">
+            <img src="./img/AgADTgIAAladvQo.gif" alt="User Icon" />
+          </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="center-content">
+                <img width="100px" height="100px" src="./img/AgADTgIAAladvQo.gif" alt="Placeholder Image" />
+                <p class="center-text">Привет, я AI Urist, разработанный командой Imells. Я сейчас обучаюсь и работаю в бета-версии. Можешь написать свой вопрос, я постараюсь ответить.
+                </p>
+              </div>
+        </div>
+        <div class="chat-input">
+            <textarea id="question" rows="1" placeholder="Пишите"></textarea>
+          <button id="sitors" onclick="sendMessage()"><img src="./img/Send_fill.svg" alt=""></button>
+        </div>
+      </div>
+    </div>
+    <script>
+        document.addEventListener('input', function(event) {
+            if (event.target.tagName.toLowerCase() !== 'textarea') return;
+            autoResizeTextarea(event.target);
+        });
+
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+    </script>
+    <script src="script.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.querySelector(".sidebar");
+        const sidebarToggle = document.getElementById("sidebarToggle");
+        const chatContainer = document.querySelector(".chat-container");
+      
+        // Automatically close sidebar on mobile
+        if (window.innerWidth <= 768) {
+          sidebar.classList.add("sidebar-closed");
+        }
+      
+        sidebarToggle.addEventListener("click", function () {
+          sidebar.classList.toggle("sidebar-closed");
+          setTimeout(adjustChatContainer, 300);
+        });
+      
+        function adjustChatContainer() {
+          if (sidebar.classList.contains("sidebar-closed")) {
+            chatContainer.style.width = "100%";
+          } else {
+            chatContainer.style.width = "calc(100% - 200px)";
+          }
+        }
+      
+        adjustChatContainer();
+      });
+      
+    </script>
+    <script>
+        function addMessage(content, isUser) {
+    const chatContainer = document.querySelector('.chat-container');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', isUser ? 'user' : 'ai');
+    messageDiv.textContent = content;
+    chatContainer.appendChild(messageDiv);
+}
+function createMessageElement(content, isUser) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', isUser ? 'user' : 'ai');
+    
+    const label = document.createElement('span');
+    label.classList.add('label');
+    label.textContent = isUser ? 'You:' : 'AI:';
+
+    messageDiv.appendChild(label);
+    messageDiv.appendChild(document.createTextNode(content));
+    
+    return messageDiv;
+}
+
+function addMessage(content, isUser) {
+    const chatContainer = document.querySelector('.chat-container');
+    const messageElement = createMessageElement(content, isUser);
+    chatContainer.appendChild(messageElement);
+}
+
+    </script>
+  </body>
+</html>

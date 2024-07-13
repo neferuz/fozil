@@ -1,0 +1,310 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    width: 200px;
+    border-right: 2px solid #e8e8e8;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.sidebar-closed {
+    margin-left: -242px; /* Hides sidebar */
+}
+
+.chat-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: calc(100% - 200px); /* Adjust for sidebar width */
+    transition: width 0.3s ease;
+}
+
+.sidebar.sidebar-closed + .chat-container {
+    width: 100%; /* Full width when sidebar is closed */
+}
+
+.chat-header {
+    margin-top: 10px;
+    border-radius: 20px;
+    margin: 5px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#sidebarToggle {
+    margin-right: 10px;
+}
+
+.beta {
+    font-weight: 500;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.chat-message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.user {
+    background-color: #d1e7dd; /* Color for user messages */
+    align-self: flex-end; /* Align to the right */
+}
+
+.ai {
+    background-color: #f8d7da; /* Color for AI messages */
+    align-self: flex-start; /* Align to the left */
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.chat-input textarea {
+    flex: 1;
+    resize: none;
+    background-color: #f7f9fb;
+    border: 1px solid #d5d7da;
+    border-radius: 15px;
+    padding: 15px;
+    font-family: "Montserrat", sans-serif;
+    margin-right: 10px;
+    box-sizing: border-box; /* Includes padding and border in width */
+    overflow: hidden; /* Hide scrollbars */
+}
+
+textarea:focus {
+    border-color: #ff5733; /* Border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.chat-input button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #ff5733;
+}
+
+.menu,
+.menu-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    color: #000000;
+    border: none;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 10px 12px;
+    margin: 5px 0;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.feruz {
+    background-color: black;
+    color: #ffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.menu-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center;  /* Center text */
+    margin-top: 20px;
+}
+
+.center-content img {
+    max-width: 100%;
+    height: auto;
+}
+.center-text {
+    text-align: center !important;
+    margin: 0 auto; /* Центрирование с помощью отступов */
+    width: 100%; /* Занимает всю ширину родителя */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Центрирование по вертикали */
+    text-align: center; /* Центрирование текста внутри */
+}
+
+
+.placeholder-message {
+    color: #888; /* Lighter color for the placeholder */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.chat-messages .message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.chat-messages .message.user {
+    text-align: right;
+}
+
+.chat-messages .message.bot {
+    text-align: left;
+}
+
+.chat-messages .message .content {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.chat-messages .message.user .content {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.chat-messages .message.bot .content {
+    background-color: #f1f1f1;
+    color: #333333;
+}
+
+.header-left .mode {
+    margin: 0 auto;
+    font-size: 0.8em;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+.header-right img {
+    width: 53px;
+    height: 50px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed; /* Фиксированное положение */
+        left: -200px; /* Скрыто за пределами экрана */
+        transition: left 0.3s ease; /* Плавный переход */
+        width: 200px; /* Ширина sidebar */
+        height: 100%; /* Занимает всю высоту */
+    }
+
+    .sidebar.open {
+        left: 0; /* Открытое состояние */
+    }
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Hide sidebar on mobile */
+    }
+    .chat-container {
+        width: 100%; /* Full width for chat container */
+    }
+
+    .chat-header {
+        padding: 10px; /* Adjust padding */
+        font-size: 1.2em; /* Smaller font size */
+    }
+
+    .menu-item {
+        font-size: 0.9em; /* Smaller font size for menu items */
+    }
+
+    .chat-input textarea {
+        padding: 10px; /* Adjust padding */
+    }
+
+    .chat-input button {
+        padding: 8px 15px; /* Smaller padding */
+    }
+
+    .center-content .p {
+        font-size: 1em; /* Adjust font size for smaller screens */
+        align-items: center;
+    }
+    .center-text {
+        text-align: center !important;
+        margin: 0 auto; /* Центрирование с помощью отступов */
+        width: 295px; /* Занимает всю ширину родителя */
+    }
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Центрирование по вертикали */
+        text-align: center; /* Центрирование текста внутри */
+    }
+    
+
+    .chat-messages {
+        padding: 15px; /* Adjust padding */
+    }
+}
